@@ -1,2 +1,4 @@
-gdal-bin
-libgdal-dev
+rm packages.txt
+git add .
+git commit -m "Remove packages.txt"
+git push
