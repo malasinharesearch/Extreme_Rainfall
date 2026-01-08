@@ -3,3 +3,11 @@ geopandas
 leafmap
 owslib
 streamlit
+numpy==1.26.4
+pandas==2.1.4
+xarray
+matplotlib
+shapely==2.0.2
+pyproj==3.6.1
+geopandas==0.14.1
+fiona==1.9.5
