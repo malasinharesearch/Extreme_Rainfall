@@ -3,10 +3,3 @@ geopandas
 leafmap
 owslib
 streamlit
-numpy
-pandas
-shapely
-pyproj
-folium
-matplotlib
-
