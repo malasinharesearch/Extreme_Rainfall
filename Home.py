@@ -1,40 +1,93 @@
 import streamlit as st
 import leafmap.foliumap as leafmap
 
-st.set_page_config(layout="wide")
+# ----------------------------------
+# Page configuration
+# ----------------------------------
+st.set_page_config(
+    page_title="Extreme Rainfall & Water Vapour",
+    page_icon="💧",
+    layout="wide",
+)
 
-# Customize the sidebar
-markdown = """
-A Streamlit map template
-<https://github.com/opengeos/streamlit-map-template>
-"""
+# ----------------------------------
+# Sidebar
+# ----------------------------------
+st.sidebar.title("💧 About This App")
 
-st.sidebar.title("About")
-st.sidebar.info(markdown)
-logo = "https://i.imgur.com/UbOXYAU.png"
-st.sidebar.image(logo)
-
-# Customize page title
-st.title("Streamlit for Geospatial Applications")
-
-st.markdown(
+st.sidebar.info(
     """
-    This multipage app template demonstrates various interactive web apps created using [streamlit](https://streamlit.io) and [leafmap](https://leafmap.org). It is an open-source project and you are very welcome to contribute to the [GitHub repository](https://github.com/opengeos/streamlit-map-template).
+    **Extreme Rainfall and Atmospheric Water Vapour Analysis**
+
+    This application focuses on understanding the role of
+    atmospheric water vapour in driving extreme rainfall events.
+
+    **Research Focus**
+    • Extreme rainfall events  
+    • Atmospheric moisture (TCWV)  
+    • Spatial hotspot analysis  
+    • Flood and climate extremes  
+
+    Developed for academic and research use.
     """
 )
 
-st.header("Instructions")
+# ----------------------------------
+# Main Title
+# ----------------------------------
+st.title("💧 Extreme Rainfall and Atmospheric Water Vapour")
 
-markdown = """
-1. For the [GitHub repository](https://github.com/opengeos/streamlit-map-template) or [use it as a template](https://github.com/opengeos/streamlit-map-template/generate) for your own project.
-2. Customize the sidebar by changing the sidebar text and logo in each Python files.
-3. Find your favorite emoji from https://emojipedia.org.
-4. Add a new app to the `pages/` directory with an emoji in the file name, e.g., `1_🚀_Chart.py`.
+st.markdown(
+    """
+    ### 🌧️ Scientific Motivation
 
-"""
+    Extreme rainfall events are among the most destructive hydro-meteorological hazards. A key physical driver of such extremes is the 
+    **availability and transport of atmospheric water vapour**.
+    
+    This application is designed to explore how
+    **moisture-rich atmospheric conditions influence the
+    intensity and spatial distribution of extreme rainfall**.
+    """
+)
 
-st.markdown(markdown)
+# ----------------------------------
+# Objectives
+# ----------------------------------
+st.subheader("🎯 Objectives")
+
+st.markdown(
+    """
+    • Identify spatial hotspots of extreme rainfall  
+    • Examine atmospheric water vapour conditions during extreme events  
+    • Explore rainfall–water vapour relationships  
+    • Support flood hazard and climate extreme studies  
+    """
+)
+
+# ----------------------------------
+# Navigation guide
+# ----------------------------------
+st.subheader("🧭 How to Use This Application")
+
+st.markdown(
+    """
+    Use the navigation menu on the left to explore:
+
+    • **Interactive Maps** – spatial exploration  
+    • **Extreme Rainfall Heatmap** – rainfall intensity patterns  
+    • **Water Vapour Analysis** – moisture-driven extremes  
+    • **Basemaps & WMS** – contextual geospatial layers  
+
+    Each section focuses on a specific scientific component
+    of extreme rainfall analysis.
+    """
+)
+
+# ----------------------------------
+# Context map (visual only)
+# ----------------------------------
+st.subheader("🌍 Global Context Map")
 
 m = leafmap.Map(minimap_control=True)
-m.add_basemap("OpenTopoMap")
-m.to_streamlit(height=500)
+m.add_basemap("CartoDB dark_matter")
+m.to_streamlit(height=450)
