@@ -1,32 +1,76 @@
 import streamlit as st
 import leafmap.foliumap as leafmap
 
-markdown = """
-A Streamlit map template
-<https://github.com/opengeos/streamlit-map-template>
-"""
+# ----------------------------------
+# Page configuration
+# ----------------------------------
+st.set_page_config(layout="wide")
 
-st.sidebar.title("About")
-st.sidebar.info(markdown)
-logo = "https://i.imgur.com/UbOXYAU.png"
-st.sidebar.image(logo)
+# ----------------------------------
+# Sidebar
+# ----------------------------------
+st.sidebar.title("🌍 Interactive Climate Map")
 
+st.sidebar.info(
+    """
+    **Extreme Rainfall & Water Vapour Explorer**
 
-st.title("Interactive Map")
+    This interactive map allows users to explore
+    geographical regions relevant to extreme rainfall
+    and atmospheric moisture studies.
 
+    Use this page to:
+    • Navigate to regions of interest  
+    • Change climate-relevant basemaps  
+    • Prepare spatial context for rainfall & moisture analysis  
+    """
+)
+
+# ----------------------------------
+# Main title
+# ----------------------------------
+st.title("🌍 Interactive Map: Extreme Rainfall & Water Vapour Context")
+
+st.markdown(
+    """
+    This interactive map provides spatial context for analyzing
+    extreme rainfall events and associated atmospheric water vapour
+    conditions. Users can explore different regions and basemaps
+    before applying advanced analytical layers.
+    """
+)
+
+# ----------------------------------
+# Layout
+# ----------------------------------
 col1, col2 = st.columns([4, 1])
-options = list(leafmap.basemaps.keys())
-index = options.index("OpenTopoMap")
+
+# ----------------------------------
+# Basemap selector (climate friendly)
+# ----------------------------------
+options = [
+    "CartoDB dark_matter",
+    "OpenTopoMap",
+    "Esri.WorldImagery",
+    "Stamen.Terrain",
+    "CartoDB positron",
+]
 
 with col2:
+    basemap = st.selectbox("🗺️ Select basemap", options, index=0)
 
-    basemap = st.selectbox("Select a basemap:", options, index)
-
-
+# ----------------------------------
+# Map view (India-focused by default)
+# ----------------------------------
 with col1:
-
     m = leafmap.Map(
-        locate_control=True, latlon_control=True, draw_export=True, minimap_control=True
+        center=[22.5, 80.0],  # India-centered (change later if needed)
+        zoom=4,
+        locate_control=True,
+        latlon_control=True,
+        draw_export=True,
+        minimap_control=True,
     )
+
     m.add_basemap(basemap)
     m.to_streamlit(height=700)
